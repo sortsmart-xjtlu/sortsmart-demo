@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SortSmart Campus · 智能分拣助手 · 王孔鑫 2363490</title>
+<title>SortSmart Campus · 智能分拣助手 · XJTLU 2026</title>
 <style>
 :root{--paper:#fbfaf6;--card:#ffffff;--ink:#1d1d1b;--mut:#63655f;--line:#e3e1d8;--acc:#0e6b3f;--acc-ink:#0b5531;--soft:#f5f4ec}
 *{box-sizing:border-box}
@@ -88,7 +88,7 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding:18px 0 30px;text
 
 <div class="top"><div class="wrap nav">
   <div class="logo">♻ <b>SortSmart</b> Campus</div>
-  <div class="sub">组长 王孔鑫 2363490 · XJTLU 2026 RDL峰会 · 苏州规则 · 中英双语 · 离线单文件</div>
+  <div class="sub">组长 王孔鑫 · XJTLU 2026 RDL峰会 · 苏州规则 · 中英双语 · 离线单文件</div>
   <span class="sp"></span>
   <button class="cb" onclick="tab('p6')">我的数据</button>
 </div></div>
@@ -152,7 +152,7 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding:18px 0 30px;text
   <div style="height:8px;background:var(--soft);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-top:10px"><i id="bar" style="display:block;height:100%;width:0;background:var(--acc)"></i></div>
   <div class="row"><button class="g2" onclick="resetSt()">重置数据</button><button class="g2" onclick="expLog()">导出协同日志 CSV</button></div></section>
 
-<footer>SortSmart Campus · 组长 王孔鑫 2363490 · 规则依据《苏州市生活垃圾分类指导目录》· 拍照为模拟，视觉模型为未来工作</footer>
+<footer>SortSmart Campus · 组长 王孔鑫 · 规则依据《苏州市生活垃圾分类指导目录》· 拍照为模拟，视觉模型为未来工作</footer>
 </div>
 <div id="toast" style="display:none"></div>
 
@@ -176,7 +176,7 @@ function fb(ok){if(!last){toast("请先查询一次再反馈");return}var st=JSO
 function bump(){var st=JSON.parse(localStorage.getItem("ss_st")||'{"q":0,"ok":0,"fix":0}');st.q++;localStorage.setItem("ss_st",JSON.stringify(st));renderSt()}
 function log(s){var a=JSON.parse(localStorage.getItem("ss_log")||"[]");a.unshift(new Date().toLocaleString()+" ｜ "+s);localStorage.setItem("ss_log",JSON.stringify(a.slice(0,60)));renderLog()}
 function renderLog(){var a=JSON.parse(localStorage.getItem("ss_log")||"[]");document.getElementById("clog").innerHTML=a.length?a.join("<br>"):"— 暂无记录 —"}
-function expLog(){var a=JSON.parse(localStorage.getItem("ss_log")||"[]");if(!a.length){toast("日志为空，先查询并反馈一次");return}var csv="time,event\n"+a.map(x=>'"'+x.replace(/"/g,"'")+'"').join("\n");var u=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));var l=document.createElement("a");l.href=u;l.download="SortSmart_CoLog_2363490.csv";l.click();toast("CSV已导出，可贴海报Figure 2")}
+function expLog(){var a=JSON.parse(localStorage.getItem("ss_log")||"[]");if(!a.length){toast("日志为空，先查询并反馈一次");return}var csv="time,event\n"+a.map(x=>'"'+x.replace(/"/g,"'")+'"').join("\n");var u=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));var l=document.createElement("a");l.href=u;l.download="SortSmart_CoLog.csv";l.click();toast("CSV已导出，可贴海报Figure 2")}
 function cam(n){tab("p1");document.getElementById("q").value=n;doSearch();document.getElementById("cres").innerHTML="📷 模拟拍摄：<b>"+n+"</b>（视觉通道模拟70%）＋规则复核 → 结果已在①展示。未来接真实CV模型。";toast("模拟拍摄："+n)}
 function renderKB(){var q=(document.getElementById("kq").value||"").toLowerCase(),f=document.getElementById("kf").value;var rows=DB.filter(r=>(!f||r[1]===f)&&(!q||r[0].toLowerCase().indexOf(q)>=0));var html="<table><tr><th>物品</th><th>类别</th><th>要点</th><th></th></tr>"+rows.map(r=>"<tr><td><b>"+r[0].split("|")[0]+"</b></td><td>"+pill(r[1])+"</td><td class='mut'>"+r[3]+"</td><td><button class='g2' onclick=\"document.getElementById('q').value='"+r[0].split("|")[0]+"';tab('p1');doSearch()\">查</button></td></tr>").join("")+"</table><div class='mut'>共 "+rows.length+" 条（演示版）。</div>";document.getElementById("kb").innerHTML=html}renderKB();
 var QZ=[["奶茶杯属于？",["可回收物","其他垃圾","厨余垃圾","有害垃圾"],1,"杯体被污染＋复合材质"],["纸巾属于？",["可回收物","其他垃圾","有害垃圾","厨余垃圾"],1,"吸水碎裂不可回收"],["废电池属于？",["其他垃圾","可回收物","厨余垃圾","有害垃圾"],3,"重金属"],["剩饭属于？",["其他垃圾","有害垃圾","可回收物","厨余垃圾"],3,"易腐"],["干净纸箱属于？",["可回收物","其他垃圾","厨余垃圾","有害垃圾"],0,"干净干燥"],["大骨头在苏州属于？",["厨余垃圾","可回收物","其他垃圾","有害垃圾"],2,"难降解"],["碎玻璃酒瓶属于？",["厨余垃圾","其他垃圾","可回收物","有害垃圾"],2,"包好防划伤"],["旧衣服(干净)属于？",["有害垃圾","厨余垃圾","其他垃圾","可回收物"],3,"纺织再生"]];var qi=0,qs=0,best=0;
