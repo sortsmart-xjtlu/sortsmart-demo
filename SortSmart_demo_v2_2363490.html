@@ -1,18 +1,160 @@
-﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SortSmart v2 王孔鑫2363490</title><style>:root{--bg:#f4f7f2;--ink:#16281f;--mut:#5d6f63;--line:#dce7df;--grn:#0e9a5b;--blu:#0ea5b7;--red:#dc2626;--sh:0 10px 30px rgba(20,60,40,.10)}*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Microsoft YaHei",Arial;background:var(--bg);color:var(--ink)}.wrap{max-width:1180px;margin:0 auto;padding:12px 18px}.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--grn),var(--blu));display:grid;place-items:center;font-size:24px;color:#fff;font-weight:900}.title{font-weight:900;font-size:19px}.sub{font-size:12.5px;color:var(--mut)}.sp{flex:1}.cb{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:13px}.hero{background:linear-gradient(120deg,#0b6b3a,#0e9a5b 55%,#0ea5b7);color:#fff;border-radius:22px;padding:26px 24px;margin:16px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}@media(max-width:900px){.hero{grid-template-columns:1fr}}.hero h1{margin:0 0 8px;font-size:29px;line-height:1.3}.hero p{opacity:.93;line-height:1.7;font-size:14px}.cta{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;font-size:14px}.bW{background:#fff;color:#0b3d24}.bO{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.5)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}.stat{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:10px;text-align:center}.stat b{font-size:22px;display:block}</style></head><body>
-<div class="top"><div class="wrap nav"><div class="logo">♻</div><div><div class="title">SortSmart Campus v2 · 智能分拣助手</div><div class="sub">组长 王孔鑫 2363490 · XJTLU2026赛道一 · 苏州规则 · 中英双语 · 离线单文件</div></div><span class="sp"></span><button class="cb" onclick="toast('Bilingual always-on 中英同屏')">中/EN同屏</button><button class="cb" onclick="tab('p6')">📊 我的数据</button></div></div>
-<div class="wrap"><div class="hero"><div><h1>10秒，正确、可解释、可纠错的分类决策。</h1><p>本地规则引擎＋置信度＋为什么/易混/投放动作。AI建议，人决策，纠错回流升级规则库——现场可复现。</p><div class="cta"><button class="btn bW" onclick="tab('p1')">🔍 立即查询（按 / 键）</button><button class="btn bO" onclick="tab('p1');demoMistake()">✨ 演示AI犯错→人纠正</button></div></div><div class="stats"><div class="stat"><b>93%</b><span>Demo组(对照82%)</span></div><div class="stat"><b>128条</b><span>苏州双语规则</span></div><div class="stat"><b>8s</b><span>中位耗时</span></div><div class="stat"><b>78.5</b><span>SUS评分</span></div></div></div>
-<div id="tabs" style="position:sticky;top:73px;z-index:15;background:rgba(244,247,242,.94);padding:8px 0;display:flex;gap:8px;flex-wrap:wrap"></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SortSmart Campus · 智能分拣助手 · 王孔鑫 2363490</title>
+<style>
+:root{--paper:#fbfaf6;--card:#ffffff;--ink:#1d1d1b;--mut:#63655f;--line:#e3e1d8;--acc:#0e6b3f;--acc-ink:#0b5531;--soft:#f5f4ec}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Times New Roman",SimSun,NSimSun,"Songti SC","Songti Simplified","Noto Serif SC",serif;font-size:15px;line-height:1.75}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.top{position:sticky;top:0;z-index:20;background:rgba(251,250,246,.96);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:baseline;gap:14px;padding:12px 0;flex-wrap:wrap}
+.logo{font-weight:700;font-size:20px;letter-spacing:.5px}
+.logo b{color:var(--acc)}
+.sub{font-size:13px;color:var(--mut)}
+.sp{flex:1}
+.cb{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:7px 14px;cursor:pointer;font:inherit;font-size:13px}
+.cb:hover{border-color:var(--acc);color:var(--acc-ink)}
+.lead{padding:34px 0 10px}
+.lead h1{margin:0 0 10px;font-size:30px;line-height:1.45;font-weight:700}
+.lead p{margin:0 0 16px;color:var(--mut);font-size:14.5px;max-width:46em}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:8px;padding:10px 18px;cursor:pointer;font:inherit;font-size:14.5px}
+.btn:hover{background:var(--acc-ink)}
+.btn.ghost{background:#fff;color:var(--acc-ink)}
+.stats{display:flex;margin:26px 0 4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.stat{flex:1;min-width:130px;padding:14px 10px;text-align:center;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{font-size:22px;display:block;font-weight:700}
+.stat span{font-size:12.5px;color:var(--mut)}
+#tabs{position:sticky;top:57px;z-index:15;background:rgba(251,250,246,.97);padding:10px 0;display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.tab{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 16px;cursor:pointer;font:inherit;font-size:14px;color:var(--ink)}
+.tab:hover{border-color:var(--acc);color:var(--acc-ink)}
+.tab.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;margin:16px 0}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+h2{margin:0 0 8px;font-size:19px;font-weight:700}
+.mut{color:var(--mut);font-size:13.5px;line-height:1.8}
+.sbox{display:flex;gap:8px;margin-top:12px}
+.sbox input{flex:1;padding:12px 14px;border-radius:8px;border:1px solid var(--line);font:inherit;font-size:15px;background:#fff;outline:none}
+.sbox input:focus{border-color:var(--acc)}
+.sbox select{padding:12px;border-radius:8px;border:1px solid var(--line);font:inherit;font-size:14px;background:#fff;outline:none}
+.go{background:var(--acc);color:#fff;border:1px solid var(--acc);border-radius:8px;padding:11px 18px;cursor:pointer;font:inherit;font-size:14.5px}
+.go:hover{background:var(--acc-ink)}
+.g2{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;font:inherit;font-size:14px;color:var(--ink)}
+.g2:hover{border-color:var(--acc);color:var(--acc-ink)}
+.hot{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hot button{border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:6px 14px;cursor:pointer;font:inherit;font-size:13px;color:var(--mut)}
+.hot button:hover{border-color:var(--acc);color:var(--acc-ink)}
+.res{margin-top:14px;border:1px solid var(--line);border-radius:10px;padding:16px;background:#fdfdfb}
+.pill{display:inline-block;padding:4px 14px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid}
+.pR{color:#0b6b3a;border-color:#9ccbb0;background:#eff7f1}
+.pF{color:#0b6e7c;border-color:#9ac6cd;background:#ecf6f8}
+.pH{color:#b91c1c;border-color:#e3a9a9;background:#fbf0f0}
+.pO{color:#92400e;border-color:#d9bb8c;background:#faf3e6}
+.cbar{height:6px;background:var(--soft);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin:10px 0}
+.cbar i{display:block;height:100%;background:var(--acc)}
+.why3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:700px){.why3{grid-template-columns:1fr}}
+.why3 div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px;line-height:1.8}
+.why3 b{display:block;color:var(--acc-ink);margin-bottom:4px;font-size:12px;letter-spacing:1px}
+.rel{position:relative;flex:1}
+.sugg{position:absolute;background:#fff;border:1px solid var(--line);border-radius:8px;width:100%;z-index:30;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.sugg div{padding:10px 14px;cursor:pointer;font-size:14px}
+.sugg div:hover,.sugg div.sel{background:var(--soft)}
+.kbd{font-size:11.5px;border:1px solid var(--line);border-radius:5px;padding:1px 6px;background:#fff;color:var(--mut);font-family:"Times New Roman",serif}
+.side{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:18px}
+.side h3{margin:0 0 6px;font-size:16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+select{padding:10px;border-radius:8px;border:1px solid var(--line);background:#fff;font:inherit;font-size:14px;color:var(--ink)}
+.log{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;max-height:180px;overflow:auto;font-size:12.5px;line-height:1.9;color:#4c544d;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:700;font-size:12.5px;border-bottom:1.5px solid var(--line)}
+.qbtn{display:block;width:100%;text-align:left;margin:8px 0;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;font:inherit;font-size:14.5px}
+.qbtn:hover{border-color:var(--acc)}
+.qbtn.ok{border-color:#9ccbb0;background:#eff7f1;color:#0b5531}
+.qbtn.no{border-color:#d9a9a9;background:#fbf0f0;color:#a02020}
+#mp > div{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fdfdfb;font-size:13px}
+footer{border-top:1px solid var(--line);margin-top:26px;padding:18px 0 30px;text-align:center;color:var(--mut);font-size:12.5px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#2c2c28;color:#fff;padding:11px 22px;border-radius:8px;display:none;z-index:99;font-size:14px}
+</style>
+</head>
+<body>
 
-<style>.card{background:#fff;border:1px solid #dce7df;border-radius:20px;padding:20px;margin:14px 0;box-shadow:0 10px 30px rgba(20,60,40,.10)}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}@media(max-width:920px){.grid{grid-template-columns:1fr}}h2{margin:0 0 6px;font-size:20px}.mut{color:#5d6f63;font-size:13.5px;line-height:1.75}.sbox{display:flex;gap:8px;margin-top:10px}.sbox input{flex:1;padding:14px;border-radius:14px;border:2px solid #dce7df;font-size:15px;background:#fbfdfb;outline:none}.sbox input:focus{border-color:#0e9a5b}.go{background:#0e9a5b;color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer}.hot{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.hot button{border:1px solid #dce7df;background:#f2f7f3;border-radius:999px;padding:7px 13px;cursor:pointer;font-size:12.5px}.res{margin-top:12px;border:1.5px dashed #b9d4c1;border-radius:16px;padding:14px;background:#f4faf5}.pill{display:inline-block;padding:5px 14px;border-radius:999px;font-weight:900;font-size:14px;border:1.5px solid}.pR{color:#0b6b3a;border-color:#0e9a5b;background:#e3f4ea}.pF{color:#0b6e7c;border-color:#0ea5b7;background:#e2f5f8}.pH{color:#b91c1c;border-color:#dc2626;background:#fdeaea}.pO{color:#92400e;border-color:#e8930c;background:#fdf1dc}.cbar{height:8px;background:#e5ece6;border-radius:99px;overflow:hidden;margin:8px 0}.cbar i{display:block;height:100%;background:linear-gradient(90deg,#0e9a5b,#0ea5b7)}.why3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}@media(max-width:700px){.why3{grid-template-columns:1fr}}.why3 div{background:#fff;border:1px solid #dce7df;border-radius:12px;padding:10px;font-size:12.5px;line-height:1.7}.rel{position:relative;flex:1}.sugg{position:absolute;background:#fff;border:1px solid #dce7df;border-radius:12px;width:100%;z-index:30;overflow:hidden}.sugg div{padding:10px 12px;cursor:pointer;font-size:13.5px}.sugg div:hover{background:#e9f5ec}.kbd{font-size:11px;border:1px solid #dce7df;border-radius:6px;padding:1px 6px;background:#fff;color:#5d6f63}.side{background:#0f241a;color:#d9efe2;border-radius:16px;padding:16px}.side h3{margin:0;color:#fff}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}select{padding:10px;border-radius:10px;border:1px solid #33543f;background:#12291c;color:#fff}.log{background:#0a1a12;border:1px solid #2c4f39;border-radius:12px;padding:10px;max-height:170px;overflow:auto;font-size:12px;line-height:1.8;color:#bfe3cd;margin-top:8px}.g2{background:#fff;border:1px solid #dce7df;border-radius:10px;padding:10px 14px;cursor:pointer}</style>
-<section class="card" id="p1"><div class="grid"><div><h2>① 智能快查 · 10秒出结果</h2><div class="mut">中文/英文/拼音首字均可，先查本地库，未命中走低置信兜底并声明，不硬判。</div><div class="sbox"><div class="rel"><input id="q" autocomplete="off" placeholder="试试：奶茶杯 / 纸巾 / battery / 快递盒…" oninput="suggest()" onkeydown="skey(event)"><div class="sugg" id="sugg" style="display:none"></div></div><button class="go" onclick="doSearch()">查询</button></div><div class="hot" id="hot"></div><div class="res" id="sres"><b>等待查询…</b><div class="mut"><span class="kbd">/</span>聚焦 <span class="kbd">Enter</span>查询 联想<span class="kbd">↑↓</span>选择 · 顺序：奶茶杯→纸巾→电池</div></div></div><div><div class="side"><h3>协同确认区 ⭐ 专项奖证据</h3><div class="mut" style="color:#a9c8b6">AI建议须经人确认，反馈入日志可导出CSV（海报Figure 2）。</div><div class="row"><button class="go" onclick="fb(1)">✅ AI判对了</button><button class="g2" onclick="fb(0)">🛠 AI错了，我纠正</button></div><div class="row"><select id="fix"><option>可回收物 Recyclable</option><option>厨余垃圾 Food Waste</option><option>有害垃圾 Hazardous</option><option>其他垃圾 Residual</option></select><button class="g2" onclick="expLog()">导出CSV</button></div><div class="mut" id="fmsg" style="color:#a9c8b6;margin-top:8px">尚未反馈。</div><div class="log" id="clog">— 暂无记录 —</div></div></div></div></section>
-<section class="card" id="p2" style="display:none"><h2>② 拍照模拟识别 <span class="kbd">未来接CV模型，现为模拟已声明</span></h2><div class="mut">现场无摄像头也可用：点模拟物品，展示“视觉通道＋规则复核”双通道，结果回①查看可解释结论。</div><div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="g2" onclick="cam('奶茶杯')">🥤 拍：奶茶杯</button><button class="g2" onclick="cam('剩饭')">🍚 拍：剩饭</button><button class="g2" onclick="cam('电池')">🔋 拍：电池</button><button class="g2" onclick="cam('快递盒')">📦 拍：快递盒</button></div><div class="res" id="cres">等待模拟拍照…</div></section>
+<div class="top"><div class="wrap nav">
+  <div class="logo">♻ <b>SortSmart</b> Campus</div>
+  <div class="sub">组长 王孔鑫 2363490 · XJTLU 2026 RDL峰会 · 苏州规则 · 中英双语 · 离线单文件</div>
+  <span class="sp"></span>
+  <button class="cb" onclick="tab('p6')">我的数据</button>
+</div></div>
 
-<section class="card" id="p3" style="display:none"><h2>③ 分类知识库（苏州四分法 · 演示16类）</h2><div class="mut">完整128条见研究报告；支持筛选＋搜索。颜色即类别：绿可回收/蓝厨余/红有害/橙其他。</div><div class="sbox"><input id="kq" placeholder="筛选，如：纸 / bottle…" oninput="renderKB()"><select id="kf" onchange="renderKB()" style="padding:12px;border-radius:12px;border:1px solid #dce7df"><option value="">全部类别</option><option>可回收物 Recyclable</option><option>厨余垃圾 Food Waste</option><option>有害垃圾 Hazardous</option><option>其他垃圾 Residual</option></select></div><div id="kb" style="margin-top:10px"></div></section>
-<section class="card" id="p4" style="display:none"><h2>④ 闯关测验（8题 · 自动判分＋错题讲解）</h2><div class="mut">成绩计入“我的数据”。建议现场做2题即切数据页，省时间。</div><div id="quiz" style="margin-top:8px"></div><div class="row" style="display:flex;gap:8px;margin-top:8px"><button class="go" onclick="quizNext()">下一题 / 交卷</button><button class="g2" onclick="quizRestart()">重来</button></div><div class="mut" id="qmsg"></div></section>
-<section class="card" id="p5" style="display:none"><h2>⑤ 投放地图（南校区示意 · 正式版接后勤数据）</h2><div class="mut">规则到行动最后一米：告诉你投去哪里。</div><div id="mp" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:10px"></div></section>
-<section class="card" id="p6" style="display:none"><h2>⑥ 我的数据看板（本机localStorage，无后端已声明）</h2><div class="mut" id="st"></div><div style="height:10px;background:#e5ece6;border-radius:99px;overflow:hidden;margin-top:8px"><i id="bar" style="display:block;height:100%;width:0;background:linear-gradient(90deg,#0e9a5b,#0ea5b7)"></i></div><div class="row" style="display:flex;gap:8px;margin-top:10px"><button class="g2" onclick="resetSt()">重置数据</button><button class="g2" onclick="expLog()">导出协同日志CSV</button></div><div class="mut" style="margin-top:8px">海报截图建议：①快查奶茶杯结果卡 ②纠错日志 ③本页数据（Figure 1-3）。</div></section>
-<div style="text-align:center;color:#5d6f63;font-size:12px;padding:20px">SortSmart Campus · 组长 王孔鑫 2363490 · 规则依据《苏州市生活垃圾分类指导目录》· 拍照为模拟，视觉模型为未来工作</div></div>
-<div id="toast" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#10231a;color:#fff;padding:12px 20px;border-radius:999px;display:none;z-index:99;font-size:14px"></div>
+<div class="wrap">
+<div class="lead">
+  <h1>10 秒，正确、可解释、可纠错的分类决策。</h1>
+  <p>本地规则引擎给出类别、置信度与「为什么 / 易混辨析 / 投放动作」；AI 建议，人做决策，纠错回流升级规则库——现场可复现。</p>
+  <div class="cta">
+    <button class="btn" onclick="tab('p1')">立即查询（按 / 键）</button>
+    <button class="btn ghost" onclick="tab('p1');demoMistake()">演示：AI 犯错 → 人纠正</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>128</b><span>条苏州双语规则（前 36 已复核）</span></div>
+    <div class="stat"><b>&le;10s</b><span>单次查询目标（中位 8s）</span></div>
+    <div class="stat"><b>93%</b><span>Demo 组正确率目标（对照 82%）</span></div>
+    <div class="stat"><b>78.5</b><span>SUS 目标值（待实测）</span></div>
+  </div>
+</div>
+<div id="tabs"></div>
+
+<section class="card" id="p1"><div class="grid"><div>
+  <h2>① 智能快查</h2>
+  <div class="mut">中文 / 英文 / 拼音首字均可；未命中走低置信兜底并声明，不硬判。</div>
+  <div class="sbox"><div class="rel"><input id="q" autocomplete="off" placeholder="试试：奶茶杯 / 纸巾 / battery / 快递盒…" oninput="suggest()" onkeydown="skey(event)"><div class="sugg" id="sugg" style="display:none"></div></div><button class="go" onclick="doSearch()">查询</button></div>
+  <div class="hot" id="hot"></div>
+  <div class="res" id="sres"><b>等待查询…</b><div class="mut"><span class="kbd">/</span> 聚焦 · <span class="kbd">Enter</span> 查询 · 联想 <span class="kbd">↑↓</span> 选择 · 建议顺序：奶茶杯 → 纸巾 → 电池</div></div>
+</div><div>
+  <div class="side">
+    <h3>协同确认区</h3>
+    <div class="mut">AI 建议须经人确认；反馈入日志，可导出 CSV。</div>
+    <div class="row"><button class="go" onclick="fb(1)">AI 判对了</button><button class="g2" onclick="fb(0)">AI 错了，我纠正</button></div>
+    <div class="row"><select id="fix"><option>可回收物 Recyclable</option><option>厨余垃圾 Food Waste</option><option>有害垃圾 Hazardous</option><option>其他垃圾 Residual</option></select><button class="g2" onclick="expLog()">导出 CSV</button></div>
+    <div class="mut" id="fmsg" style="margin-top:10px">尚未反馈。</div>
+    <div class="log" id="clog">— 暂无记录 —</div>
+  </div>
+</div></div></section>
+
+<section class="card" id="p2" style="display:none"><h2>② 拍照模拟识别 <span class="kbd">现暂为模拟，视觉模型为未来工作</span></h2>
+  <div class="mut">现场无摄像头也可用：点模拟物品，展示「视觉通道 + 规则复核」双通道，结果回 ① 查看可解释结论。</div>
+  <div class="row" style="margin-top:12px"><button class="g2" onclick="cam('奶茶杯')">拍：奶茶杯</button><button class="g2" onclick="cam('剩饭')">拍：剩饭</button><button class="g2" onclick="cam('电池')">拍：电池</button><button class="g2" onclick="cam('快递盒')">拍：快递盒</button></div>
+  <div class="res" id="cres">等待模拟拍照…</div></section>
+
+<section class="card" id="p3" style="display:none"><h2>③ 分类知识库（苏州四分法 · 演示 16 类）</h2>
+  <div class="mut">完整 128 条见研究报告；颜色即类别：绿可回收 / 蓝厨余 / 红有害 / 橙其他。</div>
+  <div class="sbox"><input id="kq" placeholder="筛选，如：纸 / bottle…" oninput="renderKB()"><select id="kf" onchange="renderKB()"><option value="">全部类别</option><option>可回收物 Recyclable</option><option>厨余垃圾 Food Waste</option><option>有害垃圾 Hazardous</option><option>其他垃圾 Residual</option></select></div>
+  <div id="kb" style="margin-top:12px"></div></section>
+
+<section class="card" id="p4" style="display:none"><h2>④ 闯关测验（8 题 · 自动判分 + 错题讲解）</h2>
+  <div class="mut">成绩计入「我的数据」。</div>
+  <div id="quiz" style="margin-top:10px"></div>
+  <div class="row"><button class="go" onclick="quizNext()">下一题 / 交卷</button><button class="g2" onclick="quizRestart()">重来</button></div>
+  <div class="mut" id="qmsg" style="margin-top:10px"></div></section>
+
+<section class="card" id="p5" style="display:none"><h2>⑤ 投放地图（南校区示意 · 正式版接后勤数据）</h2>
+  <div class="mut">规则到行动最后一米：告诉你投去哪里。</div>
+  <div id="mp" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:12px"></div></section>
+
+<section class="card" id="p6" style="display:none"><h2>⑥ 我的数据看板（本机 localStorage，无后端）</h2>
+  <div class="mut" id="st"></div>
+  <div style="height:8px;background:var(--soft);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-top:10px"><i id="bar" style="display:block;height:100%;width:0;background:var(--acc)"></i></div>
+  <div class="row"><button class="g2" onclick="resetSt()">重置数据</button><button class="g2" onclick="expLog()">导出协同日志 CSV</button></div></section>
+
+<footer>SortSmart Campus · 组长 王孔鑫 2363490 · 规则依据《苏州市生活垃圾分类指导目录》· 拍照为模拟，视觉模型为未来工作</footer>
+</div>
+<div id="toast" style="display:none"></div>
 
 <script>var DB=[["奶茶杯|奶茶|milk tea|bubble tea|naicha","其他垃圾 Residual","受污染纸塑复合+吸管封膜须拆分","干净纸杯≠可回收，污染即降级","倒掉液体→投灰色桶(食堂门口)",96,"naicha"],["剩饭|剩菜|厨余|leftover|food waste","厨余垃圾 Food Waste","食物残渣易腐，苏州称厨余","塑料餐盒不算厨余须分开","倒入绿色厨余桶",98,"shengfan"],["纸巾|卫生纸|tissue|napkin|zhijin","其他垃圾 Residual","吸水碎裂受污染不可回收.AI初版曾误标已纠正","高频错题TOP1","投灰色桶",97,"zhijin"],["电池|干电池|battery|dianchi","有害垃圾 Hazardous","重金属污染须单独投放","充电宝纽扣电池同样有害","投红色有害桶/宿舍有害柜",99,"dianchi"],["快递盒|纸箱|cardboard|parcel|kuaidi","可回收物 Recyclable","干净干燥瓦楞纸可回收","撕胶带压扁;油污则降级","压扁投蓝色桶",95,"kuaidi"],["塑料瓶|pet|plastic bottle|suliao","可回收物 Recyclable","PET高价值可再生","倒空压扁瓶盖可同投","投蓝色桶",96,"suliao"],["一次性筷子|筷子|chopsticks|kuaizi","其他垃圾 Residual","竹木受污染难再生","未用过可捐赠不算垃圾","投灰色桶",90,"kuaizi"],["果皮|西瓜皮|香蕉皮|peel|guopi","厨余垃圾 Food Waste","果蔬皮易腐","大骨榴莲壳算其他(难降解)","投绿色桶",94,"guopi"],["大骨头|榴莲壳|durian|dagutou","其他垃圾 Residual","难降解苏州口径归其他","小骨鱼刺算厨余大骨算其他","投灰色桶",92,"dagutou"],["玻璃瓶|酒瓶|glass|boli","可回收物 Recyclable","玻璃可再生","碎玻璃包好标注防划伤","投蓝色桶/驿站",93,"boli"],["旧衣服|衣物|clothes|yifu","可回收物 Recyclable","纺织物可再生","油污霉变改其他","投旧衣箱(生活动中心旁)",91,"yifu"],["灯管|灯泡|fluorescent|dengguan","有害垃圾 Hazardous","含汞","易碎包好再投","投红色桶",97,"dengguan"],["牙刷|toothbrush|yashua","其他垃圾 Residual","复合塑料难分","电动头同理电池拆下归有害","投灰色桶",89,"yashua"],["咖啡渣|茶叶渣|coffee|kafei","厨余垃圾 Food Waste","有机易腐可堆肥","滤纸一并算厨余","投绿色桶",90,"kafei"],["外卖盒|餐盒|takeout|waimai","其他垃圾 Residual","油污复合难清洗再生","洗净可改可回收多数判其他更稳","倒渣投灰色桶",88,"waimai"],["快递袋|塑料袋|plastic bag|suliaodai","其他垃圾 Residual","轻薄膜受污染难再生(苏州口径)","干净大膜可去驿站问回收","投灰色桶",87,"suliaodai"]];
 var last=null,selIdx=-1;
@@ -28,7 +170,6 @@ function skey(e){if(e.key==="/"&&document.activeElement!==document.getElementByI
 document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();tab("p1");document.getElementById("q").focus()}});
 function demoMistake(){document.getElementById("q").value="纸巾";last={q:"纸巾",r:DB[2],conf:62};document.getElementById("sres").innerHTML="<div>"+pill("可回收物 Recyclable")+" <span class='mut'>置信度 62% · AI初版（错误示范）</span></div><div class='cbar'><i style='width:62%'></i></div><div class='mut'><b>AI解释(错)：</b>纸巾是纸所以可回收。<br><b style='color:#dc2626'>人工纠正：</b>吸水碎裂＋受污染，苏州口径为<b>其他垃圾</b>。请点右侧“🛠 AI错了，我纠正”→下拉选“其他垃圾”→导出CSV，观察日志+1。</div>";document.getElementById("fix").selectedIndex=3;toast("AI已犯错，请用右侧按钮纠正它")}
 </script>
-
 <script>var TABS=[["p1","①快查"],["p2","②拍照模拟"],["p3","③知识库"],["p4","④测验"],["p5","⑤地图"],["p6","⑥数据"]];function tab(id){TABS.forEach(t=>{document.getElementById(t[0]).style.display=t[0]===id?"block":"none"});document.querySelectorAll("#tabs .tab").forEach(b=>b.classList.toggle("on",b.dataset.t===id))}document.getElementById("tabs").innerHTML=TABS.map((t,i)=>'<button class="tab'+(i===0?' on':'')+'" data-t="'+t[0]+'">'+t[1]+'</button>').join("");document.querySelectorAll("#tabs .tab").forEach(b=>b.onclick=()=>tab(b.dataset.t));
 var HOT=["奶茶杯","纸巾","电池","剩饭","快递盒","塑料瓶","外卖盒","旧衣服"];document.getElementById("hot").innerHTML=HOT.map(h=>'<button onclick="document.getElementById(\'q\').value=this.textContent;doSearch()">'+h+'</button>').join("");
 function fb(ok){if(!last){toast("请先查询一次再反馈");return}var st=JSON.parse(localStorage.getItem("ss_st")||'{"q":0,"ok":0,"fix":0}');st.q++;if(ok){st.ok++;document.getElementById("fmsg").textContent="已确认："+last.r[1]+" 正确，谢谢验证！";log(last.q+" → "+last.r[1]+" ｜ 人确认正确 conf"+last.conf+"%")}else{st.fix++;var c=document.getElementById("fix").value;document.getElementById("fmsg").textContent="已纠正：AI说"+last.r[1]+"，人改为"+c+"，已入日志待库升级。";log(last.q+" → AI:"+last.r[1]+" ｜ 人纠正为:"+c);show([last.r[0],c,"人工依据《苏州市指导目录》复核","以人工结论为准","按新类别投放"],92,"人工纠正结论")}localStorage.setItem("ss_st",JSON.stringify(st));renderSt();toast(ok?"✅ 确认已记录":"🛠 纠错已记录，日志+1")}
@@ -43,5 +184,6 @@ function quizShow(){var q=QZ[qi];document.getElementById("quiz").innerHTML="<b>Q
 function quizAns(i){var q=QZ[qi],btns=document.querySelectorAll("#quiz .qbtn");btns.forEach(b=>b.disabled=true);btns[q[2]].classList.add("ok");if(i===q[2]){qs++;document.getElementById("qmsg").textContent="✅ 正确！"+q[3]+"（"+qs+"/"+QZ.length+"）"}else{btns[i].classList.add("no");document.getElementById("qmsg").textContent="❌ 错了，正解："+q[1][q[2]]+"。"+q[3]}if(qs>best)best=qs;var st=JSON.parse(localStorage.getItem("ss_st")||'{"q":0,"ok":0,"fix":0}');st.qz=best;localStorage.setItem("ss_st",JSON.stringify(st));renderSt()}
 function quizNext(){if(qi<QZ.length-1){qi++;quizShow()}else{document.getElementById("qmsg").innerHTML="🏁 交卷："+qs+" / "+QZ.length+"（"+Math.round(qs/QZ.length*100)+"分）。"+(qs>=6?"优秀，可截图贴海报！":"建议回知识库复习再战。")}}function quizRestart(){qi=0;qs=0;quizShow()}quizShow();
 var PINS=[["食堂门口四色站","厨余/其他/可回收/有害","08:00-21:00 · 最全"],["南校宿舍B区","其他＋厨余","24h · 易满错峰"],["教学楼A座","可回收＋其他","工作日 · 纸瓶多"],["生活动中心旁","旧衣箱＋可回收","旧衣首选"],["宿舍有害柜","有害专用","电池灯管药品"],["北校快递驿站","纸箱回收","压扁撕胶带"]];document.getElementById("mp").innerHTML=PINS.map(p=>'<div style="border:1px solid #dce7df;border-radius:14px;padding:12px;background:#f7fbf8;font-size:12.5px"><b>📍 '+p[0]+'</b><br><span class="mut">'+p[1]+'<br>'+p[2]+'</span></div>').join("");
-function renderSt(){var st=JSON.parse(localStorage.getItem("ss_st")||'{"q":0,"ok":0,"fix":0}');document.getElementById("st").innerHTML="累计查询 <b>"+st.q+"</b> · 人确认正确 <b>"+st.ok+"</b> · 纠错 <b>"+st.fix+"</b> · 测验最佳 <b>"+(st.qz||0)+"/8</b>";document.getElementById("bar").style.width=Math.min(100,st.q*10)+"%"}function resetSt(){localStorage.removeItem("ss_st");renderSt();toast("数据已重置")}renderSt();renderLog();</script></body></html>
-
+function renderSt(){var st=JSON.parse(localStorage.getItem("ss_st")||'{"q":0,"ok":0,"fix":0}');document.getElementById("st").innerHTML="累计查询 <b>"+st.q+"</b> · 人确认正确 <b>"+st.ok+"</b> · 纠错 <b>"+st.fix+"</b> · 测验最佳 <b>"+(st.qz||0)+"/8</b>";document.getElementById("bar").style.width=Math.min(100,st.q*10)+"%"}function resetSt(){localStorage.removeItem("ss_st");renderSt();toast("数据已重置")}renderSt();renderLog();</script>
+</body>
+</html>
